@@ -7,6 +7,7 @@ Color kBlackColor = Color(0xff1F1449);
 Color kGreyColor = Color(0xff9698A9);
 Color kGreenColor = Color(0xff0EC3AE);
 Color kRedColor = Color(0xffEB70A5);
+Color kBackgroundColor = Color(0xffFAFAFA);
 
 TextStyle purpleTextStyle = GoogleFonts.poppins(
   color: kPrimaryColor

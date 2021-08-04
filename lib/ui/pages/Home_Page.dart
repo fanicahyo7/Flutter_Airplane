@@ -92,10 +92,14 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget newDestination() {
+      return Container();
+    }
+
     return ListView(
       children: [
         Column(
-          children: [header(), popularDestination()],
+          children: [header(), popularDestination(),newDestination()],
         )
       ],
     );

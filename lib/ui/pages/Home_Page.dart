@@ -1,5 +1,6 @@
 import 'package:bwa_airplane/shared/theme.dart';
 import 'package:bwa_airplane/ui/widgets/custom_destination_card.dart';
+import 'package:bwa_airplane/ui/widgets/custom_new_destination_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +22,7 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Howdy,\nKezia Anne',
+                      'Hello,\nFani Dwi Cahyo',
                       style: blackTextStyle.copyWith(
                           fontSize: 24, fontWeight: semibold),
                       overflow: TextOverflow.ellipsis,
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
                 city: 'Singapura',
                 imageUrl: 'assets/image_destination5.png',
                 rating: 4.8,
-              )
+              ),
             ],
           ),
         ),
@@ -93,13 +94,54 @@ class HomePage extends StatelessWidget {
     }
 
     Widget newDestination() {
-      return Container();
+      return Align(
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                  left: defaultMargin, right: defaultMargin, top: 30),
+              child: Text(
+                'New This Year',
+                style:
+                    blackTextStyle.copyWith(fontSize: 18, fontWeight: semibold),
+              ),
+            ),
+            CustomNewDestinationCard(
+              name: 'Danau Beratan',
+              city: 'Singaraja',
+              imageUrl: 'assets/image_destination6.png',
+              rating: 4.5,
+            ),
+            CustomNewDestinationCard(
+              name: 'Sydney Opera',
+              city: 'Australia',
+              imageUrl: 'assets/image_destination7.png',
+              rating: 4.7,
+            ),
+            CustomNewDestinationCard(
+              name: 'Roma',
+              city: 'Italy',
+              imageUrl: 'assets/image_destination8.png',
+              rating: 4.8,
+            )
+          ],
+        ),
+      );
     }
 
     return ListView(
       children: [
         Column(
-          children: [header(), popularDestination(),newDestination()],
+          children: [
+            header(),
+            popularDestination(),
+            newDestination(),
+            SizedBox(
+              height: 100,
+            )
+          ],
         )
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/pages/Home_Page.dart';
 import 'package:bwa_airplane/ui/widgets/custom_bottom_navigation_item.dart';
 import 'package:flutter/material.dart';
 
@@ -32,10 +33,15 @@ class MainPage extends StatelessWidget {
       );
     }
 
+    Widget homepage() {
+      return HomePage();
+    }
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Stack(
         children: [
+          homepage(),
           customBottomNavigation(),
         ],
       ),

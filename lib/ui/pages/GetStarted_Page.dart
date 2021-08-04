@@ -1,4 +1,5 @@
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/widgets/custom_button_item.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -35,24 +36,13 @@ class GetStartedPage extends StatelessWidget {
                       whiteTextStyle.copyWith(fontSize: 16, fontWeight: light),
                   textAlign: TextAlign.center,
                 ),
-                Container(
-                  width: 220,
-                  height: 55,
-                  margin: EdgeInsets.only(top: 50, bottom: 80),
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: kPrimaryColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(defaultRadius))),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/sign-up');
-                      },
-                      child: Text(
-                        'Get Started',
-                        style: whiteTextStyle.copyWith(
-                            fontWeight: medium, fontSize: 18),
-                      )),
-                )
+                CustomButtonItem(
+                    title: 'Get Started',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign-up');
+                    },
+                    width: 220,
+                    margin: EdgeInsets.only(top: 50, bottom: 80))
               ],
             ),
           )

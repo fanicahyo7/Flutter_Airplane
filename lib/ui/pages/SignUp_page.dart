@@ -1,4 +1,6 @@
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/widgets/custom_button_item.dart';
+import 'package:bwa_airplane/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -18,132 +20,34 @@ class SignUpPage extends StatelessWidget {
 
     Widget inputSection() {
       Widget nameInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Full Name'),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kBlackColor,
-                decoration: InputDecoration(
-                    hintText: 'Your full name',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        borderSide: BorderSide(
-                          color: kPrimaryColor,
-                        ))),
-              )
-            ],
-          ),
-        );
+        return CustomTextField(title: 'Full Name', hintText: 'Your full name');
       }
 
       Widget emailInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Email Address'),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kBlackColor,
-                decoration: InputDecoration(
-                    hintText: 'Your email address',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        borderSide: BorderSide(
-                          color: kPrimaryColor,
-                        ))),
-              )
-            ],
-          ),
-        );
+        return CustomTextField(
+            title: 'Email Address', hintText: 'Your email address');
       }
 
       Widget passwordInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Password'),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                obscureText: true,
-                cursorColor: kBlackColor,
-                decoration: InputDecoration(
-                    hintText: 'Your password',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        borderSide: BorderSide(
-                          color: kPrimaryColor,
-                        ))),
-              )
-            ],
-          ),
+        return CustomTextField(
+          title: 'Password',
+          hintText: 'Your password',
+          obsecureText: true,
         );
       }
 
       Widget hobbyInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Hobby'),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kBlackColor,
-                decoration: InputDecoration(
-                    hintText: 'Your hobby',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        borderSide: BorderSide(
-                          color: kPrimaryColor,
-                        ))),
-              )
-            ],
-          ),
-        );
+        return CustomTextField(title: 'Hobby', hintText: 'Your hobby');
       }
 
       Widget submitButton() {
-        return Container(
-          width: 287,
-          height: 55,
-          child: TextButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: kPrimaryColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius))),
-              onPressed: () {
-                Navigator.pushNamed(context, '/bonus');
-              },
-              child: Text(
-                'Get Started',
-                style:
-                    whiteTextStyle.copyWith(fontWeight: medium, fontSize: 18),
-              )),
-        );
+        return CustomButtonItem(
+            title: 'Get Started',
+            onPressed: () {
+              Navigator.pushNamed(context, '/bonus');
+            },
+            width: 287,
+            margin: EdgeInsets.only(bottom: 30));
       }
 
       return Container(

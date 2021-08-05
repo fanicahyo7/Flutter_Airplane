@@ -62,30 +62,37 @@ class HomePage extends StatelessWidget {
                 city: 'Tangerang',
                 imageUrl: 'assets/image_destination1.png',
                 rating: 4.8,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/detail');
+                },
               ),
               CustomDestinationCard(
                 name: 'White House',
                 city: 'Spain',
                 imageUrl: 'assets/image_destination2.png',
                 rating: 4.7,
+                onPressed: () {},
               ),
               CustomDestinationCard(
                 name: 'Hill Heyo',
                 city: 'Monaco',
                 imageUrl: 'assets/image_destination3.png',
                 rating: 4.8,
+                onPressed: () {},
               ),
               CustomDestinationCard(
                 name: 'Menarra',
                 city: 'Japan',
                 imageUrl: 'assets/image_destination4.png',
                 rating: 5.0,
+                onPressed: () {},
               ),
               CustomDestinationCard(
                 name: 'Payung Teduh',
                 city: 'Singapura',
                 imageUrl: 'assets/image_destination5.png',
                 rating: 4.8,
+                onPressed: () {},
               ),
             ],
           ),
@@ -125,7 +132,19 @@ class HomePage extends StatelessWidget {
               city: 'Italy',
               imageUrl: 'assets/image_destination8.png',
               rating: 4.8,
-            )
+            ),
+            CustomNewDestinationCard(
+              name: 'Payung Teduh',
+              city: 'Singapore',
+              imageUrl: 'assets/image_destination9.png',
+              rating: 4.5,
+            ),
+            CustomNewDestinationCard(
+              name: 'Hill Hey',
+              city: 'Monaco',
+              imageUrl: 'assets/image_destination10.png',
+              rating: 4.7,
+            ),
           ],
         ),
       );

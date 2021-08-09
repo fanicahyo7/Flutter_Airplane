@@ -7,23 +7,25 @@ class InterestItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          height: 16,
-          width: 16,
-          margin: EdgeInsets.only(right: 6),
-          decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage('assets/icon_check.png'))),
-        ),
-        Container(
-          child: Text(
-            name,
-            style: blackTextStyle,
+    return Expanded(
+      child: Row(
+        children: [
+          Container(
+            height: 16,
+            width: 16,
+            margin: EdgeInsets.only(right: 6),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/icon_check.png'))),
           ),
-        )
-      ],
+          Container(
+            child: Text(
+              name,
+              style: blackTextStyle,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -37,171 +37,93 @@ class DetailPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: kWhiteColor,
-      body: SafeArea(
-        child: Stack(
+    Widget content() {
+      return Container(
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+        child: Column(
           children: [
-            backgroundHeader(),
-            customShadow(),
-            Column(
-              children: [
-                Container(
-                  height: 24,
-                  width: 108,
-                  margin: EdgeInsets.only(top: 30),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/icon_emblem.png'))),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: defaultMargin,
-                    right: defaultMargin,
-                    top: 256,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Lake Ciliwung',
-                              style: whiteTextStyle.copyWith(
-                                  fontWeight: semibold, fontSize: 24),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Tangerang',
-                              style: whiteTextStyle.copyWith(
-                                  fontWeight: light, fontSize: 16),
-                              overflow: TextOverflow.ellipsis,
-                            )
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 24,
-                            width: 20,
-                            margin: EdgeInsets.only(right: 2),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage('assets/icon_star.png'))),
-                          ),
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Text(
-                            '4.8',
-                            style: whiteTextStyle.copyWith(fontWeight: medium),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            Container(
+              height: 24,
+              width: 108,
+              margin: EdgeInsets.only(top: 30),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/icon_emblem.png'))),
             ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                    top: 400, left: defaultMargin, right: defaultMargin),
-                height: double.infinity,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(18),
-                        topRight: Radius.circular(18))),
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
+            //title
+            Container(
+                margin: EdgeInsets.only(top: 256),
+                child: Row(
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 30, left: 20, right: 20),
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'About',
-                            style: blackTextStyle.copyWith(
-                                fontSize: 16, fontWeight: semibold),
+                            'Lake Ciliwung',
+                            style: whiteTextStyle.copyWith(
+                                fontWeight: semibold, fontSize: 24),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           SizedBox(
-                            height: 6,
+                            height: 5,
                           ),
                           Text(
-                            'Berada di jalur jalan provinsi yang menghubungkan Denpasar Singaraja serta letaknya yang dekat dengan Kebun Raya Eka Karya menjadikan tempat Bali.',
-                            style: blackTextStyle.copyWith(),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Photos',
-                            style: blackTextStyle.copyWith(
-                                fontWeight: semibold, fontSize: 16),
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Row(
-                            children: [
-                              CustomItemPhoto(
-                                imageUrl: 'assets/image_photo1.png',
-                              ),
-                              CustomItemPhoto(
-                                imageUrl: 'assets/image_photo2.png',
-                              ),
-                              CustomItemPhoto(
-                                imageUrl: 'assets/image_photo3.png',
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            'Interests',
-                            style: blackTextStyle.copyWith(
-                                fontSize: 16, fontWeight: semibold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              InterestItem(name: 'Kids Park'),
-                              SizedBox(
-                                width: 23,
-                              ),
-                              InterestItem(name: 'Honor Bridge')
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              InterestItem(name: 'City Museum'),
-                              SizedBox(
-                                width: 23,
-                              ),
-                              InterestItem(name: 'Central Mall')
-                            ],
+                            'Tangerang',
+                            style: whiteTextStyle.copyWith(
+                                fontWeight: light, fontSize: 16),
+                            overflow: TextOverflow.ellipsis,
                           )
                         ],
                       ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 24,
+                          width: 20,
+                          margin: EdgeInsets.only(right: 2),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/icon_star.png'))),
+                        ),
+                        SizedBox(
+                          width: 1,
+                        ),
+                        Text(
+                          '4.8',
+                          style: whiteTextStyle.copyWith(fontWeight: medium),
+                        )
+                      ],
                     )
                   ],
-                ),
-              ),
+                )),
+            Container(
+              margin: EdgeInsets.only(top: 30),
+              width: double.infinity,
+              height: 446,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(18),
+                      topRight: Radius.circular(18)),
+                  color: kWhiteColor),
+                  child: Container(
+                    
+                  ),
             )
           ],
+        ),
+      );
+    }
+
+    return Scaffold(
+      backgroundColor: kWhiteColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [backgroundHeader(), customShadow(), content()],
+          ),
         ),
       ),
     );

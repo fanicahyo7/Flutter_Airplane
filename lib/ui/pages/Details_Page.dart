@@ -102,9 +102,9 @@ class DetailPage extends StatelessWidget {
                   ],
                 )),
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(top: 30, bottom: 31),
               width: double.infinity,
-              height: 400,
+              // height: 400,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(18),

@@ -5,10 +5,13 @@ import 'package:bwa_airplane/ui/pages/GetStarted_Page.dart';
 import 'package:bwa_airplane/ui/pages/Main_Page.dart';
 import 'package:bwa_airplane/ui/pages/SignUp_page.dart';
 import 'package:bwa_airplane/ui/pages/Splash_Page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

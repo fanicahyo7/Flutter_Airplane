@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "966520309860",
+    "project_id": "airplane-87ee3",
+    "storage_bucket": "airplane-87ee3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966520309860:android:e8631dd1173180af3df771",
+        "android_client_info": {
+          "package_name": "com.fani.bwa_airplane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966520309860-fdrh48h9roeimnvdk6egcqubh7ki5u3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr0vPVmAiGPNUkHpvU1NTRBx0bvQiJMB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966520309860-fdrh48h9roeimnvdk6egcqubh7ki5u3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

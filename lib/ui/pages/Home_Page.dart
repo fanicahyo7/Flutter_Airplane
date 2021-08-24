@@ -1,7 +1,9 @@
+import 'package:bwa_airplane/cubit/auth_cubit.dart';
 import 'package:bwa_airplane/shared/theme.dart';
 import 'package:bwa_airplane/ui/widgets/custom_destination_card.dart';
 import 'package:bwa_airplane/ui/widgets/custom_new_destination_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,45 +11,53 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget header() {
-      return Container(
-          margin: EdgeInsets.only(
-            top: 30,
-            left: defaultMargin,
-            right: defaultMargin,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Container(
+                margin: EdgeInsets.only(
+                  top: 30,
+                  left: defaultMargin,
+                  right: defaultMargin,
+                ),
+                child: Row(
                   children: [
-                    Text(
-                      'Hello,\nFani Dwi Cahyo',
-                      style: blackTextStyle.copyWith(
-                          fontSize: 24, fontWeight: semibold),
-                      overflow: TextOverflow.ellipsis,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hello,\n${state.user.name}',
+                            style: blackTextStyle.copyWith(
+                                fontSize: 24, fontWeight: semibold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            'Where to fly today?',
+                            style: greyTextStyle.copyWith(
+                                fontWeight: light, fontSize: 16),
+                          )
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      'Where to fly today?',
-                      style: greyTextStyle.copyWith(
-                          fontWeight: light, fontSize: 16),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage('assets/image_profile.png'))),
                     )
                   ],
-                ),
-              ),
-              Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/image_profile.png'))),
-              )
-            ],
-          ));
+                ));
+          } else {
+            return SizedBox();
+          }
+        },
+      );
     }
 
     Widget popularDestination() {

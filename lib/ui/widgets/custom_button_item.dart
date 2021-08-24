@@ -12,7 +12,7 @@ class CustomButtonItem extends StatelessWidget {
       required this.title,
       required this.onPressed,
       this.width = double.infinity,
-      required this.margin})
+      this.margin = EdgeInsets.zero})
       : super(key: key);
 
   @override

@@ -1,12 +1,24 @@
 import 'package:bwa_airplane/cubit/auth_cubit.dart';
+import 'package:bwa_airplane/cubit/destination_cubit.dart';
 import 'package:bwa_airplane/shared/theme.dart';
 import 'package:bwa_airplane/ui/widgets/custom_destination_card.dart';
 import 'package:bwa_airplane/ui/widgets/custom_new_destination_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<DestinationCubit>().fetchDestinations();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,19 +172,34 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    return ListView(
-      children: [
-        Column(
-          children: [
-            header(),
-            popularDestination(),
-            newDestination(),
-            SizedBox(
-              height: 100,
-            )
-          ],
-        )
-      ],
+    return BlocConsumer<DestinationCubit, DestinationState>(
+      listener: (context, state) {
+        if (state is DestinationFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(backgroundColor: kRedColor, content: Text(state.error)));
+        }
+      },
+      builder: (context, state) {
+        if (state is DestinationSuccess) {
+          return ListView(
+            children: [
+              Column(
+                children: [
+                  header(),
+                  popularDestination(),
+                  newDestination(),
+                  SizedBox(
+                    height: 100,
+                  )
+                ],
+              )
+            ],
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }

@@ -1,26 +1,23 @@
+import 'package:bwa_airplane/models/destination_model.dart';
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/pages/Details_Page.dart';
 import 'package:flutter/material.dart';
 
 class CustomDestinationCard extends StatelessWidget {
-  final String name;
-  final String city;
-  final String imageUrl;
-  final double rating;
-  final Function() onPressed;
+  final DestinationModel destinations;
 
-  const CustomDestinationCard(
-      {Key? key,
-      required this.name,
-      required this.city,
-      required this.imageUrl,
-      this.rating = 0.0,
-      required this.onPressed})
+  const CustomDestinationCard({Key? key, required this.destinations})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPressed,
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailPage(destination: destinations)));
+      },
       child: Container(
         height: 323,
         width: 200,
@@ -39,7 +36,8 @@ class CustomDestinationCard extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  image: DecorationImage(image: AssetImage(imageUrl))),
+                  image: DecorationImage(
+                      image: NetworkImage(destinations.imageUrl))),
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
@@ -62,7 +60,7 @@ class CustomDestinationCard extends StatelessWidget {
                                 image: AssetImage('assets/icon_star.png'))),
                       ),
                       Text(
-                        rating.toString(),
+                        destinations.rating.toString(),
                         style: blackTextStyle.copyWith(fontWeight: medium),
                       )
                     ],
@@ -76,7 +74,7 @@ class CustomDestinationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    destinations.name,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: medium,
@@ -86,7 +84,7 @@ class CustomDestinationCard extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    city,
+                    destinations.city,
                     style: greyTextStyle.copyWith(fontWeight: light),
                   )
                 ],

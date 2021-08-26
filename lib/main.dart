@@ -2,7 +2,6 @@ import 'package:bwa_airplane/cubit/auth_cubit.dart';
 import 'package:bwa_airplane/cubit/destination_cubit.dart';
 import 'package:bwa_airplane/cubit/page_cubit.dart';
 import 'package:bwa_airplane/ui/pages/Bonus_Page.dart';
-import 'package:bwa_airplane/ui/pages/Details_Page.dart';
 import 'package:bwa_airplane/ui/pages/GetStarted_Page.dart';
 import 'package:bwa_airplane/ui/pages/Main_Page.dart';
 import 'package:bwa_airplane/ui/pages/SignIn_page.dart';
@@ -44,7 +43,6 @@ class MyApp extends StatelessWidget {
           '/sign-in': (context) => SignInPage(),
           '/bonus': (context) => BonusPage(),
           '/main': (context) => MainPage(),
-          '/detail': (context) => DetailPage(),
         },
       ),
     );

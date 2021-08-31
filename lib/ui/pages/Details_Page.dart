@@ -213,7 +213,9 @@ class DetailPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ChooseSeatPage()));
+                              builder: (context) => ChooseSeatPage(
+                                    destination: destination,
+                                  )));
                     },
                     margin: EdgeInsets.only(top: 5),
                     width: 170,

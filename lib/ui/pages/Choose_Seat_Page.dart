@@ -1,11 +1,17 @@
+import 'package:bwa_airplane/cubit/seat_cubit.dart';
+import 'package:bwa_airplane/models/destination_model.dart';
+import 'package:bwa_airplane/models/transaction_model.dart';
 import 'package:bwa_airplane/shared/theme.dart';
 import 'package:bwa_airplane/ui/pages/Checkout_Page.dart';
 import 'package:bwa_airplane/ui/widgets/custom_button_item.dart';
 import 'package:bwa_airplane/ui/widgets/custom_seat_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class ChooseSeatPage extends StatelessWidget {
-  const ChooseSeatPage({Key? key}) : super(key: key);
+  final DestinationModel destination;
+  const ChooseSeatPage({Key? key, required this.destination}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -273,44 +279,52 @@ class ChooseSeatPage extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              padding: EdgeInsets.symmetric(horizontal: 22),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            BlocBuilder<SeatCubit, List<String>>(
+              builder: (context, state) {
+                return Container(
+                  margin: EdgeInsets.only(top: 30),
+                  padding: EdgeInsets.symmetric(horizontal: 22),
+                  child: Column(
                     children: [
-                      Text(
-                        'Your seat',
-                        style: greyTextStyle.copyWith(fontWeight: light),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Your seat',
+                            style: greyTextStyle.copyWith(fontWeight: light),
+                          ),
+                          Text(
+                            state.join(', '),
+                            style: blackTextStyle.copyWith(
+                                fontWeight: medium, fontSize: 16),
+                          )
+                        ],
                       ),
-                      Text(
-                        'A3, B3',
-                        style: blackTextStyle.copyWith(
-                            fontWeight: medium, fontSize: 16),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Total',
+                            style: greyTextStyle.copyWith(fontWeight: light),
+                          ),
+                          Text(
+                            NumberFormat.currency(
+                              locale: 'ID',
+                              symbol: 'IDR ',
+                              decimalDigits: 0,
+                            ).format(state.length * destination.price),
+                            style: purpleTextStyle.copyWith(
+                                fontWeight: semibold, fontSize: 16),
+                          )
+                        ],
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Total',
-                        style: greyTextStyle.copyWith(fontWeight: light),
-                      ),
-                      Text(
-                        'IDR 540.000.000',
-                        style: purpleTextStyle.copyWith(
-                            fontWeight: semibold, fontSize: 16),
-                      )
-                    ],
-                  )
-                ],
-              ),
+                );
+              },
             )
           ],
         ),
@@ -318,18 +332,33 @@ class ChooseSeatPage extends StatelessWidget {
     }
 
     Widget buttonCheckout() {
-      return Container(
-        margin: EdgeInsets.only(top: 30),
-        child: CustomButtonItem(
-          title: 'Continue to Checkout',
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CheckoutPage()));
-          },
-          margin: EdgeInsets.only(
-              left: defaultMargin, right: defaultMargin, bottom: 46),
-          width: 327,
-        ),
+      return BlocBuilder<SeatCubit, List<String>>(
+        builder: (context, state) {
+          return Container(
+            margin: EdgeInsets.only(top: 30),
+            child: CustomButtonItem(
+              title: 'Continue to Checkout',
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CheckoutPage(
+                              transaction: TransactionModel(
+                                  destination: destination,
+                                  traveler: state.length,
+                                  refundable: false,
+                                  insurance: true,
+                                  vat: 25,
+                                  seat: state.join(', '),
+                                  price: destination.price),
+                            )));
+              },
+              margin: EdgeInsets.only(
+                  left: defaultMargin, right: defaultMargin, bottom: 46),
+              width: 327,
+            ),
+          );
+        },
       );
     }
 

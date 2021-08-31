@@ -1,7 +1,7 @@
 import 'package:bwa_airplane/cubit/auth_cubit.dart';
+import 'package:bwa_airplane/cubit/transaction_cubit.dart';
 import 'package:bwa_airplane/models/transaction_model.dart';
 import 'package:bwa_airplane/shared/theme.dart';
-import 'package:bwa_airplane/ui/pages/Success_Page.dart';
 import 'package:bwa_airplane/ui/widgets/custom_RowDetailBooking.dart';
 import 'package:bwa_airplane/ui/widgets/custom_button_item.dart';
 import 'package:flutter/material.dart';
@@ -328,14 +328,34 @@ class CheckoutPage extends StatelessWidget {
     }
 
     Widget buttonPayNow() {
-      return CustomButtonItem(
-          title: 'Pay Now',
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SuccessPage()));
-          },
-          margin: EdgeInsets.only(
-              right: defaultMargin, left: defaultMargin, bottom: 30));
+      return BlocConsumer<TransactionCubit, TransactionState>(
+        listener: (context, state) {
+          if (state is TransactionSuccess) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/success', (route) => false);
+          } else if (state is TransactionFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: kRedColor, content: Text(state.error)));
+          }
+        },
+        builder: (context, state) {
+          if (state is TransactionLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return CustomButtonItem(
+                title: 'Pay Now',
+                onPressed: () {
+                  context
+                      .read<TransactionCubit>()
+                      .createTransaction(transaction);
+                },
+                margin: EdgeInsets.only(
+                    right: defaultMargin, left: defaultMargin, bottom: 30));
+          }
+        },
+      );
     }
 
     return Scaffold(

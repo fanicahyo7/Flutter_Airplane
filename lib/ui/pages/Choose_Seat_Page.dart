@@ -350,7 +350,8 @@ class ChooseSeatPage extends StatelessWidget {
                                   insurance: true,
                                   vat: 25,
                                   seat: state.join(', '),
-                                  price: destination.price),
+                                  price: destination.price,
+                                  grandtotal: destination.price * state.length),
                             )));
               },
               margin: EdgeInsets.only(

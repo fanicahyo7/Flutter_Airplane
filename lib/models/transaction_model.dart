@@ -10,6 +10,7 @@ class TransactionModel extends Equatable {
   final double vat;
   final int price;
   final int grandtotal;
+  final String id;
 
   TransactionModel(
       {required this.destination,
@@ -19,7 +20,22 @@ class TransactionModel extends Equatable {
       this.refundable = false,
       this.vat = 0.20,
       this.price = 0,
-      this.grandtotal = 0});
+      this.grandtotal = 0,
+      this.id = ''});
+
+  factory TransactionModel.fromJson(String id, Map<String, dynamic> json) =>
+      TransactionModel(
+        id: id,
+        destination: DestinationModel.fromJson(
+            json['destination']['id'], json['destination']),
+        insurance: json['insurance'],
+        grandtotal: json['grandtotal'],
+        price: json['price'],
+        refundable: json['refundable'],
+        seat: json['seat'],
+        traveler: json['traveler'],
+        vat: json['vat'],
+      );
 
   @override
   List<Object?> get props => [
